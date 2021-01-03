@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <div>
             <Navigation />
-            <Row>
+            <Row className="no-gutters">
                 <Col xs={3}>
                     <Categories />
                 </Col>
