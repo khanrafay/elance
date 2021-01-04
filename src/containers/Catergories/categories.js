@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 
 const Categories = () => {
-    return (<ListGroup flush>
+    return (<ListGroup>
         <ListGroupItem disabled tag="a" href="#">Categories</ListGroupItem>
         <ListGroupItem tag="a" href="#">Programmers</ListGroupItem>
         <ListGroupItem tag="a" href="#">Plumbers</ListGroupItem>

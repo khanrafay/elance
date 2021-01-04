@@ -5,8 +5,10 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import ServiceImage from '../../Images/download.png';
-const Services = () => {
+import Seller from '../../components/Seller/seller';
+
+
+const Sellers = () => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,21 +29,17 @@ const Services = () => {
         }
     };
     return (
-        <Carousel responsive={responsive}>
+        <React.Fragment>
+            <h1>Seller</h1>
+            <Carousel responsive={responsive}>
                 {Array(6).fill().map((_, i) => (
                     <div className="services">
-                        <Card>
-                            <CardImg top width="100%" src={ServiceImage} alt="Card image cap" />
-                            <CardBody>
-                                <CardTitle tag="h5">Card title</CardTitle>
-                                <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                <Button>Button</Button>
-                            </CardBody>
-                        </Card></div>
+                        <Seller />
+                    </div>
                 ))}
-        </Carousel>
+            </Carousel>
+        </React.Fragment>
     );
 }
 
-export default Services;
+export default Sellers;
