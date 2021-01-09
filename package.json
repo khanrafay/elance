@@ -12,6 +12,7 @@
     "react-multi-carousel": "^2.6.1",
     "react-scripts": "4.0.1",
     "reactstrap": "^8.8.1",
+    "typescript": "^4.1.0-beta",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

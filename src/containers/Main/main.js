@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
-import Seller from '../../components/Seller/seller';
 import Categories from '../Catergories/categories';
 import Navigation from '../Navbar/navbar';
 import Sellers from '../Sellers/sellers';

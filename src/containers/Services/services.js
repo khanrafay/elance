@@ -2,8 +2,7 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, FormGroup, Label, Input, Row, Col
+    FormGroup, Input, Row, Col
 } from 'reactstrap';
 import Service from '../../components/Service/service';
 
@@ -41,16 +40,19 @@ const Services = () => {
                         />
                     </FormGroup>
                 </Col>
-                <Carousel responsive={responsive}>
-                    {Array(6).fill().map((_, i) => (
-                        <div className="services">
-                            <Col>
-                                <Service />
-                            </Col>
-                        </div>
-                    ))}
-                </Carousel>
+            </Row>
+            <Row>
+                <Col>
+                    <Carousel responsive={responsive}>
+                        {Array(6).fill().map((_, i) => (
+                            <div className="services">
 
+                                <Service />
+
+                            </div>
+                        ))}
+                    </Carousel>
+                </Col>
             </Row>
         </React.Fragment>
 
