@@ -1,17 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import {jsonRequest} from "../../api/request/request";
+import {CATEGORIES_LIST, SERVICES_LIST} from "../../api/routing/routes/dashboard";
+import {SEARCH_ROUTE} from "../../routes";
+import {Link} from "react-router-dom";
 
 const Categories = () => {
-    return (<ListGroup>
-        <ListGroupItem disabled tag="a" href="#">Categories</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Programmers</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Plumbers</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Drivers</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Securities</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Lawyers</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Web Designers</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Ios/Android Developers</ListGroupItem>
-    </ListGroup>);
+  const [categories, setCategories] = useState([]);
+
+  const loadCategories = () => {
+    jsonRequest(CATEGORIES_LIST)
+      .then(response => response.json())
+      .then(json => {
+        setCategories(json.list);
+      });
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+
+  return (
+    <ListGroup>
+      {categories.map((cat, index) => (
+        <Link to={`${SEARCH_ROUTE}?categoryId[]=${cat.id}`} className="list-group-item" key={index}>
+          {cat.name}
+        </Link>
+      ))}
+    </ListGroup>
+  );
 };
 
 export default Categories;

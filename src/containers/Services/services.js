@@ -45,17 +45,14 @@ const Services = () => {
                 <Col>
                     <Carousel responsive={responsive}>
                         {Array(6).fill().map((_, i) => (
-                            <div className="services">
-
+                            <div className="services" key={i}>
                                 <Service />
-
                             </div>
                         ))}
                     </Carousel>
                 </Col>
             </Row>
         </React.Fragment>
-
     );
 }
 

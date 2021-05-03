@@ -13,7 +13,7 @@ const Sellers = () => {
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 3
+            items: 4
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -29,7 +29,7 @@ const Sellers = () => {
             <h1>Seller</h1>
             <Carousel responsive={responsive}>
                 {Array(6).fill().map((_, i) => (
-                    <div className="services">
+                    <div className="services" key={i}>
                         <Seller />
                     </div>
                 ))}

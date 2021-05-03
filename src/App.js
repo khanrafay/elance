@@ -9,23 +9,28 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {HOMEPAGE, LOGIN, SEARCH_ROUTE, SIGNUP} from "./routes";
+import {Error404} from "./components/Error/404";
+import Search from "./containers/Search/search";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login">
+        <Route path={LOGIN}>
           <Login />
         </Route>
-        <Route path="/signup">
+        <Route path={SIGNUP}>
           <Signup />
         </Route>
-        <Route path="/">
+        <Route path={SEARCH_ROUTE}>
+          <Search />
+        </Route>
+        <Route path={HOMEPAGE}>
           <Main />
         </Route>
       </Switch>
     </Router>
-
   );
 }
 
