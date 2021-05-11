@@ -1,15 +1,18 @@
 import React, {useState, useEffect, useMemo, FunctionComponent} from "react";
-import Layout from "../Layout/layout";
+import Layout from "../layout/layout";
 import {jsonRequest} from "../../api/request/request";
 import {SERVICES_LIST} from "../../api/routing/routes/dashboard";
 import {Col, Row} from "reactstrap";
-import Categories from "../Catergories/categories";
-import Services from "../Services/services";
-import Sellers from "../Sellers/sellers";
-import Service from "../../components/Service/service";
+import Categories from "../categories/categories";
+import Services from "../services/services";
+import Sellers from "../sellers/sellers";
+import Service from "../../components/service/service";
 import {Service as ServiceModel} from '../../api/model/service';
 import {RouteComponentProps, useLocation} from "react-router";
 import {QueryString} from "../../lib/location/query.string";
+import FormGroup from "reactstrap/es/FormGroup";
+import {Input} from "reactstrap/es";
+import {Search as SearchBar} from "../../components/search/search";
 
 export interface SearchProps{}
 
@@ -58,8 +61,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
       maxPrice: values.maxPrice
     };
 
-    console.log(values);
-
     return data;
   };
 
@@ -75,10 +76,15 @@ const Search: FunctionComponent<SearchProps> = (props) => {
         </Col>
         <Col xs={12} lg={9}>
           <Row>
+            <Col lg={12}>
+              <SearchBar />
+            </Col>
+          </Row>
+          <Row>
             {services.map((service, index) => {
               return (
                 <Col xs={12} lg={4} key={index}>
-                  <Service title={service.title} description={service.description} />
+                  <Service service={service} />
                 </Col>
               );
             })}

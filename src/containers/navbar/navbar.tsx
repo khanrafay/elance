@@ -20,12 +20,12 @@ const Navigation = () => {
     return (
         <div className="navigation">
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Elance</NavbarBrand>
+                <NavbarBrand href="/">{process.env.REACT_APP_WEBSITE_NAME}</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar className="justify-content-end">
                     <div className="navigation__services">
-                        <Link to={LOGIN}>Login</Link>
-                        <Link to={SIGNUP}>Signup</Link>
+                        <Link className="btn btn-link" to={LOGIN}>Login</Link>
+                        <Link className="btn btn-link" to={SIGNUP}>Signup</Link>
                     </div>
                 </Collapse>
             </Navbar>

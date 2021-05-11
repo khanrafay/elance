@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
-import Categories from '../Catergories/categories';
-import Navigation from '../Navbar/navbar';
-import Sellers from '../Sellers/sellers';
-import Services from '../Services/services';
-import Layout from "../Layout/layout";
+import Categories from '../categories/categories';
+import Navigation from '../navbar/navbar';
+import Sellers from '../sellers/sellers';
+import Services from '../services/services';
+import Layout from "../layout/layout";
 
 
 const Main = () => {

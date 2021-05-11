@@ -1,5 +1,7 @@
 import {Category} from "./category";
 import {Package} from "./package";
+import {Seller} from "./seller";
+import {Media} from "./media";
 
 export interface Service{
     title: string;
@@ -9,4 +11,6 @@ export interface Service{
     maxPrice: number;
     category: Category;
     packages: Package[];
+    seller: Seller;
+    images: Media[];
 }

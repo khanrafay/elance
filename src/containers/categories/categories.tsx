@@ -4,9 +4,10 @@ import {jsonRequest} from "../../api/request/request";
 import {CATEGORIES_LIST, SERVICES_LIST} from "../../api/routing/routes/dashboard";
 import {SEARCH_ROUTE} from "../../routes";
 import {Link} from "react-router-dom";
+import {Category} from "../../api/model/category";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const loadCategories = () => {
     jsonRequest(CATEGORIES_LIST)

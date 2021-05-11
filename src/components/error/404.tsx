@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from "../../containers/Layout/layout";
+import Layout from "../../containers/layout/layout";
 
 export const Error404 = () => {
   return (

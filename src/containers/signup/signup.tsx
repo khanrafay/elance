@@ -3,27 +3,29 @@ import {
   Card, CardBody,
   CardTitle, Button, Form, FormGroup, Input
 } from 'reactstrap';
-import Layout from "../Layout/layout";
+import Layout from "../layout/layout";
+import {jsonRequest} from "../../api/request/request";
+import {CATEGORIES_LIST, REGISTER} from "../../api/routing/routes/dashboard";
 
 const Signup = () => {
 
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [username, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const submitForm = () => {
 
-    console.log('object', firstName, lastName, username, email, password)
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ firstName, lastName, username, email, password })
     };
-    fetch('http://liberrands.smileserviceslib.com/index.php/api/auth/register', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log('check data', data))
+
+    jsonRequest(REGISTER, requestOptions)
+        .then(response => response.json())
+        .then(json => {});
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Seller from '../../components/Seller/seller';
+import Seller from '../../components/seller/seller';
 
 
 const Sellers = () => {
@@ -28,7 +28,7 @@ const Sellers = () => {
         <React.Fragment>
             <h1>Seller</h1>
             <Carousel responsive={responsive}>
-                {Array(6).fill().map((_, i) => (
+                {Array(6).fill('').map((_, i) => (
                     <div className="services" key={i}>
                         <Seller />
                     </div>
