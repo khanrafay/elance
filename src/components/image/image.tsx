@@ -8,15 +8,16 @@ export interface ImageProps {
     w?: number;
     fit?: string;
     q?: number;
+    circle?: boolean;
 }
 
-export const Image: FunctionComponent<ImageProps> = ({image, h, w, q, fit}) => {
+export const Image: FunctionComponent<ImageProps> = ({image, h, w, q, fit, circle}) => {
     return (
         <>
             <img
                 src={`${MEDIA_URL.replace(':id', image.id.toString())}?${q ? `q=${q}&` : ''}${w ? `w=${w}&` : ''}${h ? `h=${h}&` : ''}${fit ? `fit=${fit}&` : ''}`}
                 alt={image.orgFileName}
-                className="img-fluid"
+                className={`img-fluid${circle ? ' rounded-circle' : ''}`}
             />
         </>
     );

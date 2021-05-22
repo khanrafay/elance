@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './navbar.css';
 import {
     Collapse,
@@ -9,13 +9,21 @@ import {
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 import {LOGIN, SIGNUP} from "../../routes";
+import {useSelector} from "react-redux";
+import {getAuthorizedUser} from "../../duck/auth/auth.selector";
 
 
 const Navigation = () => {
 
+    const getUser = useSelector(getAuthorizedUser);
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        console.log(getUser);
+    }, [getUser]);
 
     return (
         <div className="navigation">
