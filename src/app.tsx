@@ -1,14 +1,20 @@
-import logo from './logo.svg';
 import './app.css';
 import Main from './containers/main/main';
 import Login from './containers/login/login';
 import Signup from './containers/signup/signup';
+import {BrowserRouter as Router, Route, Switch,} from "react-router-dom";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import {HOMEPAGE, LOGIN, SEARCH_ROUTE, SERVICE_ROUTE, SIGNUP} from "./routes";
+  DASHBOARD,
+  EARNINGS,
+  HOMEPAGE,
+  INBOX,
+  LOGIN,
+  ORDERS,
+  SEARCH_ROUTE,
+  SERVICE_ROUTE,
+  SIGNUP,
+  SINGLE_MESSAGE
+} from "./routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
 import {connect} from "react-redux";
@@ -17,8 +23,15 @@ import {isUserLoggedIn} from "./duck/auth/auth.selector";
 import {getBootstrapError, hasBootstrapped} from "./duck/app/app.selector";
 import {bootstrap} from "./duck/app/app.action";
 import {userLoggedOut} from "./duck/auth/auth.action";
-import { bindActionCreators, Dispatch } from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {FunctionComponent, useEffect} from "react";
+import {Redirect} from "react-router";
+import {Dashboard} from "./containers/dashboard/dashboard";
+import {Inbox} from "./containers/dashboard/inbox";
+import {Orders} from "./containers/dashboard/orders";
+import {Earnings} from "./containers/dashboard/earnings";
+import {QueryString} from "./lib/location/query.string";
+import {useLogout} from "./duck/auth/hooks/useLogout";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -30,48 +43,76 @@ export interface AppProps {
 
 
 const AppComponent: FunctionComponent<AppProps> = (props) => {
-
-    useEffect(() => {
-        props.bootstrap();
-    }, []);
-
-  const { isLoggedIn, hasBootstrapped, bootstrapError } = props;
-
+  
+  const [logoutState, logoutAction] = useLogout();
+  useEffect(() => {
+    props.bootstrap();
+    function handleException(){
+      logoutAction();
+    }
+    window.addEventListener('unhandledrejection', handleException);
+    
+    return () => window.removeEventListener('unhandledrejection', handleException);
+  }, []);
+  
+  const {isLoggedIn, hasBootstrapped, bootstrapError} = props;
+  
   if (!!bootstrapError) {
     return <div>An error occurred while initializing application</div>;
   }
-
+  
   if (!hasBootstrapped) {
     return null;
   }
-
+  
   return (
     <Router>
       <Switch>
-        <Route path={HOMEPAGE} exact render={(props) => <Main />} />
-        <Route path={LOGIN} render={(props) => <Login />} />
-        <Route path={SIGNUP} render={(props) => <Signup />} />
-        <Route path={SEARCH_ROUTE} render={(props) => <Search />} />
-        <Route path={SERVICE_ROUTE} render={(props) => <Service {...props} />} />
+        <Route path={HOMEPAGE} exact render={(props) => <Main/>}/>
+        <Route path={SEARCH_ROUTE} render={(props) => <Search/>}/>
+        <Route path={SERVICE_ROUTE} render={(props) => <Service {...props} />}/>
+        <Route path={LOGIN} render={(props) => {
+          let queryString = QueryString.parse(props.location.search);
+          let ref = queryString.ref as any;
+          return (
+            isLoggedIn ? (
+              <Redirect to={ref || DASHBOARD} />
+            ) : (
+              <Login/>
+            )
+          );
+        }}/>
+        <Route path={SIGNUP} render={(props) => <Signup/>}/>
+        {isLoggedIn ? (
+          <>
+            <Route path={DASHBOARD} exact render={() => <Dashboard/>} />
+            <Route path={INBOX} exact render={(routeProps) => <Inbox {...routeProps} />} />
+            <Route path={SINGLE_MESSAGE} render={(routeProps) => <Inbox {...routeProps} />} />
+            <Route path={ORDERS} render={() => <Orders/>} />
+            <Route path={EARNINGS} render={() => <Earnings/>} />
+          </>
+        ) : (
+          <Redirect to={LOGIN} />
+        )}
       </Switch>
     </Router>
   );
 };
 
 const App = connect(
-    (state: RootState) => ({
-      isLoggedIn: isUserLoggedIn(state),
-      hasBootstrapped: hasBootstrapped(state),
-      bootstrapError: getBootstrapError(state),
-    }),
-    (dispatch: Dispatch) =>
-        bindActionCreators(
-            {
-              bootstrap: bootstrap,
-              userLoggedOut,
-            },
-            dispatch
-        )
+  (state: RootState) => ({
+    isLoggedIn: isUserLoggedIn(state),
+    hasBootstrapped: hasBootstrapped(state),
+    bootstrapError: getBootstrapError(state),
+  }),
+  (dispatch: Dispatch) =>
+    bindActionCreators(
+      {
+        bootstrap: bootstrap,
+        userLoggedOut,
+      },
+      dispatch
+    )
 )(AppComponent);
 
 export default App;

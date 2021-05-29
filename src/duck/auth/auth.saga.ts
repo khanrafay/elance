@@ -25,7 +25,7 @@ export function* authenticateUser() {
   }
 
   yield put(
-    userAuthenticated(response as User)
+    userAuthenticated(response.user as User)
   );
 }
 

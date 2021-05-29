@@ -14,4 +14,7 @@ export const FEATURED_SERVICES_LIST = scopeUrl('services/featured-list');
 
 export const MEDIA_URL = scopeUrl('media/:id');
 
+export const THREADS_LIST = scopeUrl('threads/');
 export const CREATE_THREAD = scopeUrl('threads/create');
+export const THREAD_MESSAGES = scopeUrl('threads/:id/messages');
+export const SEND_MESSAGE = scopeUrl('threads/:id/send');

@@ -3,8 +3,10 @@ import {User} from "../../model/user";
 import { AUTH_INFO } from '../../routing/routes/dashboard';
 import { HttpException, UnauthorizedException } from '../../exception';
 
-export interface AuthInfoResponse extends User{
-
+export interface AuthInfoResponse{
+    code: number;
+    message?: string;
+    user: User
 }
 
 export class UserNotAuthorizedException {

@@ -6,4 +6,7 @@ export interface ConstraintViolation {
 export interface ValidationResult {
   violations: ConstraintViolation[];
   errorMessage: string;
+  code?: number;
+  message?: string;
+  status?: boolean;
 }

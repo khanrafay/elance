@@ -36,6 +36,6 @@ const Sellers = () => {
             </Carousel>
         </React.Fragment>
     );
-}
+};
 
 export default Sellers;

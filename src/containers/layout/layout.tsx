@@ -11,7 +11,7 @@ const Layout: FunctionComponent<Props> = (props) => {
     <div>
       <Navigation />
       <br />
-      <Container>
+      <Container fluid>
         {props.isLoading ? 'Loading...' : props.children}
         <div className="text-center mt-3 py-3">
             {process.env.REACT_APP_WEBSITE_NAME} &copy; all right reserved {new Date().getFullYear()}

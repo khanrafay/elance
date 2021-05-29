@@ -3,7 +3,6 @@ import { ConstraintViolation, ValidationResult } from '../../model/validation';
 export class ValidationException {
 
   violations: ConstraintViolation[] = [];
-
   errorMessage?: string;
 
   static createFromValidationResult(validationResult: ValidationResult) {

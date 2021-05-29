@@ -14,6 +14,6 @@ const Seller = () => {
             </CardBody>
         </Card>
     );
-}
+};
 
 export default Seller;

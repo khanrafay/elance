@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Card, CardBody,
     CardTitle, Button, Form, FormGroup, Input
@@ -8,36 +8,37 @@ import {LOGIN} from "../../api/routing/routes/dashboard";
 import {jsonRequest} from "../../api/request/request";
 import {useDispatch} from "react-redux";
 import {userAuthenticated} from "../../duck/auth/auth.action";
+import {useForm} from "react-hook-form";
+import {useHistory} from "react-router";
+import {DASHBOARD} from "../../routes";
 
 
 const Login = () => {
-
-    const [username, setUserName] = useState('');
-    const [password, setPassword] = useState('');
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string|undefined>(undefined);
 
     const dispatch = useDispatch();
+    const {register, handleSubmit} = useForm();
 
-    const submitForm = () => {
+    const submitForm = useCallback((values: any) => {
         setErrorMessage(undefined);
         const requestOptions = {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username: values.username, password: values.password})
         };
 
         jsonRequest(LOGIN, requestOptions)
         .then(response => response.json())
         .then(json => {
             setLoggedIn(true);
-            dispatch(userAuthenticated(json));
+            dispatch(userAuthenticated(json.user));
         }).catch(async (err) => {
             let errorResponse = await err.response.json();
             setErrorMessage(errorResponse.message);
         });
-    };
+
+    }, []);
 
     return (
         <Layout>
@@ -48,34 +49,30 @@ const Login = () => {
                         {errorMessage !== undefined && (
                             <div className="alert alert-danger">{errorMessage}</div>
                         )}
-                        {!isLoggedIn ? (
-                            <Form>
-                                <FormGroup>
-                                    <Input
-                                        type="text"
-                                        name="username"
-                                        id="username"
-                                        placeholder="User Name"
-                                        value={username}
-                                        onChange={(e) => setUserName(e.target.value)}
-                                    />
-                                </FormGroup>
-                                <FormGroup>
-                                    <Input
-                                        type="password"
-                                        name="Password"
-                                        id="examplePassword"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                </FormGroup>
-                                <Button onClick={submitForm}>Submit</Button>
-                            </Form>
-                        ) : (
-                            <h1 className="text-center my-5">Successfully logged in to application</h1>
+
+                        {isLoggedIn && (
+                            <div className="alert alert-success">Login was successful</div>
                         )}
 
+                        <Form onSubmit={handleSubmit(submitForm)}>
+                            <FormGroup>
+                                <Input
+                                    type="text"
+                                    {...register('username')}
+                                    id="username"
+                                    placeholder="User Name"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Input
+                                    type="password"
+                                    {...register('password')}
+                                    id="examplePassword"
+                                    placeholder="Password"
+                                />
+                            </FormGroup>
+                            <Button type="submit">Submit</Button>
+                        </Form>
                     </CardBody>
                 </Card>
             </div>
