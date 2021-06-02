@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {StoreFactory} from "./store/store.factory";
 import {Provider} from "react-redux";
+require('./typings.d.ts');
 
 const store = StoreFactory.createStore();
 

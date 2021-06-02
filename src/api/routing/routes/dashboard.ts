@@ -13,6 +13,7 @@ export const GET_SERVICE = scopeUrl('services/:id');
 export const FEATURED_SERVICES_LIST = scopeUrl('services/featured-list');
 
 export const MEDIA_URL = scopeUrl('media/:id');
+export const MEDIA_DOWNLOAD_URL = scopeUrl('media/:id/download');
 
 export const THREADS_LIST = scopeUrl('threads/');
 export const CREATE_THREAD = scopeUrl('threads/create');
