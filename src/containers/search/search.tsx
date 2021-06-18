@@ -13,6 +13,8 @@ import {QueryString} from "../../lib/location/query.string";
 import FormGroup from "reactstrap/es/FormGroup";
 import {Input} from "reactstrap/es";
 import {Search as SearchBar} from "../../components/search/search";
+import {Link} from "react-router-dom";
+import {SERVICE_ROUTE} from "../../routes";
 
 export interface SearchProps{}
 
@@ -84,7 +86,9 @@ const Search: FunctionComponent<SearchProps> = (props) => {
             {services.map((service, index) => {
               return (
                 <Col xs={12} lg={4} key={index}>
-                  <Service service={service} />
+                  <Link to={SERVICE_ROUTE.replace(':id', service.id.toString())} style={{textDecoration: 'none'}}>
+                    <Service service={service} />
+                  </Link>
                 </Col>
               );
             })}

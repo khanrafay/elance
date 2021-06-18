@@ -17,11 +17,13 @@ const Login = () => {
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string|undefined>(undefined);
+    const [isLoading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
     const {register, handleSubmit} = useForm();
 
     const submitForm = useCallback((values: any) => {
+        setLoading(true);
         setErrorMessage(undefined);
         const requestOptions = {
             method: 'POST',
@@ -36,6 +38,8 @@ const Login = () => {
         }).catch(async (err) => {
             let errorResponse = await err.response.json();
             setErrorMessage(errorResponse.message);
+        }).finally(() => {
+            setLoading(false);
         });
 
     }, []);
@@ -71,7 +75,7 @@ const Login = () => {
                                     placeholder="Password"
                                 />
                             </FormGroup>
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit" disabled={isLoading}>Submit</Button>
                         </Form>
                     </CardBody>
                 </Card>

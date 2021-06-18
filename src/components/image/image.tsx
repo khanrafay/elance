@@ -7,20 +7,21 @@ export interface ImageProps {
     image?: Media;
     h?: number;
     w?: number;
-    fit?: string;
+    fit?: "crop"|"contain"|"max"|"fill"|"stretch";
     q?: number;
     circle?: boolean;
     default?: string;
+    fm?: "webp"|"jpg"|"pjpg"|"png"|"gif"
 }
 
-export const Image: FunctionComponent<ImageProps> = ({image, h, w, q, fit, circle, default: defaultImage}) => {
+export const Image: FunctionComponent<ImageProps> = ({image, h, w, q, fit, circle, default: defaultImage, fm}) => {
     let id = 'default';
     if(typeof image === 'object' && image !== null){
         id = image?.id.toString();
     }
     
     let query = QueryString.stringify({
-        q, w, h, fit, default: defaultImage
+        q, w, h, fit, default: defaultImage, fm: fm || "webp"
     });
     
     return (

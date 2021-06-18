@@ -1,1 +1,0 @@
-export const OVERLAPPING_EVENTS_MESSAGE = 'Player has overlapping events';

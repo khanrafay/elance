@@ -19,3 +19,12 @@ export const THREADS_LIST = scopeUrl('threads/');
 export const CREATE_THREAD = scopeUrl('threads/create');
 export const THREAD_MESSAGES = scopeUrl('threads/:id/messages');
 export const SEND_MESSAGE = scopeUrl('threads/:id/send');
+
+export const CREATE_OFFER = scopeUrl('offer/create');
+export const ACCEPT_OFFER = scopeUrl('offer/:id/accept');
+export const REJECT_OFFER = scopeUrl('offer/:id/reject');
+
+export const ORDERS_LIST = scopeUrl('orders/');
+export const CREATE_ORDER = scopeUrl('orders/create');
+export const GET_ORDER = scopeUrl('orders/:id');
+export const UPDATE_ORDER = scopeUrl('orders/:id/update');

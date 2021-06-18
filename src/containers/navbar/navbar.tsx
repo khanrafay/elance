@@ -35,6 +35,7 @@ const Navigation = () => {
               <Link className="nav-item nav-link" to={INBOX}>Inbox</Link>
               <Link className="nav-item nav-link" to={ORDERS}>Orders</Link>
               <Link className="nav-item nav-link" to={EARNINGS}>Earnings</Link>
+              <Link className="nav-item nav-link" to="#">({getUser.displayName})</Link>
               <Button color="danger" onClick={logoutAction} className="ml-3">Logout</Button>
             </>
           )}

@@ -2,7 +2,7 @@ import {User} from "./user";
 import {Service} from "./service";
 
 export interface Offer {
-  id: number;
+  id: string;
   price: number;
   isExpired: boolean|null;
   isAccepted: boolean|null;
@@ -15,4 +15,5 @@ export interface Offer {
   description: string|null;
   duration: string|null;
   durationUnit: string|null;
+  orderId: string|null;
 }

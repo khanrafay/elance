@@ -6,7 +6,7 @@ import {Media} from "./media";
 export interface Service{
     title: string;
     description: string;
-    id: number;
+    id: string;
     minPrice: number;
     maxPrice: number;
     category: Category;

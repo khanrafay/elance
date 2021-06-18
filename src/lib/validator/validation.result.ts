@@ -1,6 +1,6 @@
 export interface ConstraintViolation {
   propertyPath: string;
-  message: string;
+  errorMessage: string;
 }
 
 export interface ValidationResult {

@@ -6,6 +6,7 @@ import {
 import Layout from "../layout/layout";
 import {jsonRequest} from "../../api/request/request";
 import {CATEGORIES_LIST, REGISTER} from "../../api/routing/routes/dashboard";
+import {useForm} from "react-hook-form";
 
 const Signup = () => {
 
@@ -14,6 +15,8 @@ const Signup = () => {
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+  const {handleSubmit, register} = useForm();
 
   const submitForm = () => {
 

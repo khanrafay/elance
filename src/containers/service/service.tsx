@@ -124,7 +124,7 @@ export const Service: FunctionComponent<ServiceProps> = (props) => {
       
       if (exceptionResponse.violations.length) {
         setErrorMessage(exceptionResponse.violations.map((error: ConstraintViolation) => {
-          return `${error.propertyPath}: ${error.message}`;
+          return `${error.propertyPath}: ${error.errorMessage}`;
         }).join('<br/>'))
       }
     } finally {

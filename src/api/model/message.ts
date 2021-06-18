@@ -3,7 +3,7 @@ import {User} from "./user";
 import {Offer} from "./offer";
 
 export interface Message {
-  id: number;
+  id: string;
   me: boolean;
   media: Media[];
   message: string|null;
