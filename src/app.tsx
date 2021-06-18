@@ -13,7 +13,7 @@ import {
   SEARCH_ROUTE,
   SERVICE_ROUTE,
   SIGNUP,
-  SINGLE_MESSAGE
+  SINGLE_MESSAGE, SINGLE_ORDER
 } from "./routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
@@ -32,6 +32,7 @@ import {Orders} from "./containers/dashboard/orders";
 import {Earnings} from "./containers/dashboard/earnings";
 import {QueryString} from "./lib/location/query.string";
 import {useLogout} from "./duck/auth/hooks/useLogout";
+import {Order} from "./containers/dashboard/order/order";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -88,7 +89,8 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
             <Route path={DASHBOARD} exact render={() => <Dashboard/>} />
             <Route path={INBOX} exact render={(routeProps) => <Inbox {...routeProps} />} />
             <Route path={SINGLE_MESSAGE} render={(routeProps) => <Inbox {...routeProps} />} />
-            <Route path={ORDERS} render={() => <Orders/>} />
+            <Route path={ORDERS} exact render={(routeProps) => <Orders {...routeProps}/>} />
+            <Route path={SINGLE_ORDER} render={(routeProps) => <Order {...routeProps}/>} />
             <Route path={EARNINGS} render={() => <Earnings/>} />
           </>
         ) : (
