@@ -8,7 +8,7 @@ import {
   EARNINGS,
   HOMEPAGE,
   INBOX,
-  LOGIN,
+  LOGIN, ORDER_PAYMENT,
   ORDERS,
   SEARCH_ROUTE,
   SERVICE_ROUTE,
@@ -33,6 +33,7 @@ import {Earnings} from "./containers/dashboard/earnings";
 import {QueryString} from "./lib/location/query.string";
 import {useLogout} from "./duck/auth/hooks/useLogout";
 import {Order} from "./containers/dashboard/order/order";
+import {OrderPayment} from "./containers/dashboard/order/payment";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -46,6 +47,7 @@ export interface AppProps {
 const AppComponent: FunctionComponent<AppProps> = (props) => {
   
   const [logoutState, logoutAction] = useLogout();
+  
   useEffect(() => {
     props.bootstrap();
     function handleException(){
@@ -90,8 +92,9 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
             <Route path={INBOX} exact render={(routeProps) => <Inbox {...routeProps} />} />
             <Route path={SINGLE_MESSAGE} render={(routeProps) => <Inbox {...routeProps} />} />
             <Route path={ORDERS} exact render={(routeProps) => <Orders {...routeProps}/>} />
-            <Route path={SINGLE_ORDER} render={(routeProps) => <Order {...routeProps}/>} />
-            <Route path={EARNINGS} render={() => <Earnings/>} />
+            <Route path={ORDER_PAYMENT} exact render={(routeProps) => <OrderPayment {...routeProps}/>} />
+            <Route path={SINGLE_ORDER} exact render={(routeProps) => <Order {...routeProps}/>} />
+            <Route path={EARNINGS} exact render={() => <Earnings/>} />
           </>
         ) : (
           <Redirect to={LOGIN} />

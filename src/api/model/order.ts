@@ -19,3 +19,11 @@ export interface Order{
   price: string;
   description: string;
 }
+
+export enum OrderStates {
+  PENDING = 'pending',
+  PROGRESS = 'progress',
+  CANCELLED = 'cancelled',
+  DELIVERED = 'delivered',
+  COMPLETED = 'completed'
+}

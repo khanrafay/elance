@@ -28,3 +28,4 @@ export const ORDERS_LIST = scopeUrl('orders/');
 export const CREATE_ORDER = scopeUrl('orders/create');
 export const GET_ORDER = scopeUrl('orders/:id');
 export const UPDATE_ORDER = scopeUrl('orders/:id/update');
+export const ORDER_PAYMENT_PAYPAL = scopeUrl('orders/:id/payment/paypal');

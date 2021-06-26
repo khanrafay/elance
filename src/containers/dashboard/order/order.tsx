@@ -1,9 +1,11 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router";
-import {Order as OrderModel} from '../../../api/model/order';
+import {Order as OrderModel, OrderStates} from '../../../api/model/order';
 import {jsonRequest} from "../../../api/request/request";
 import {GET_ORDER} from "../../../api/routing/routes/dashboard";
 import Layout from "../../layout/layout";
+import {Link} from "react-router-dom";
+import {ORDER_PAYMENT} from "../../../routes";
 
 interface OrderProps extends RouteComponentProps<{id: string}>{
 
@@ -30,9 +32,16 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
       setLoading(false);
     }
   };
+  
   return (
     <Layout>
       <h1>Order# {order?.orderId} <small className="text-muted text-sm align-middle">{order?.state?.toUpperCase()}</small></h1>
+      {order?.state?.toLocaleLowerCase() === OrderStates.PENDING && (
+        <div className="text-center border p-3 rounded">
+          <div className="alert alert-warning">Order is not yet started, please pay the order to start.</div>
+          <Link to={ORDER_PAYMENT.replace(':id', order.id)} className="btn btn-primary">Make Payment</Link>
+        </div>
+      )}
     </Layout>
   );
 };
