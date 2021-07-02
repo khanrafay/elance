@@ -6,7 +6,11 @@ export const LOGIN = scopeUrl('auth/login');
 export const LOGOUT = scopeUrl('auth/logout');
 export const AUTH_INFO = scopeUrl('auth/info');
 export const REGISTER = scopeUrl('auth/register');
+
+export const PROFILE_UPDATE = scopeUrl('profile/update');
+
 export const DASHBOARD = scopeUrl('dashboard');
+
 export const CATEGORIES_LIST = scopeUrl('categories');
 export const SERVICES_LIST = scopeUrl('services/list');
 export const GET_SERVICE = scopeUrl('services/:id');
@@ -29,3 +33,5 @@ export const CREATE_ORDER = scopeUrl('orders/create');
 export const GET_ORDER = scopeUrl('orders/:id');
 export const UPDATE_ORDER = scopeUrl('orders/:id/update');
 export const ORDER_PAYMENT_PAYPAL = scopeUrl('orders/:id/payment/paypal');
+
+export const MY_SERVICES = scopeUrl('seller/services/list');

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import {Col, Row} from 'reactstrap';
 import Categories from '../categories/categories';
-import Navigation from '../navbar/navbar';
 import Sellers from '../sellers/sellers';
 import Services from '../services/services';
 import Layout from "../layout/layout";

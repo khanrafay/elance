@@ -89,7 +89,7 @@ export const Offer: FunctionComponent<{
           <>
             <strong>Accepted</strong>
             {offer.orderId && (
-              <Link to={SINGLE_ORDER.replace(':id', offer.orderId)} className="btn btn-outline-success ml-3">Order</Link>
+              <Link to={SINGLE_ORDER.replace(':id', offer.orderId)} className="btn btn-outline-primary ml-3">View Order</Link>
             )}
           </>
         )}

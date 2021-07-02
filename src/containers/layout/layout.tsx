@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import Navigation from "../navbar/navbar";
+import Navigation from "./navbar";
 import {Container} from "reactstrap";
 
 export interface Props{

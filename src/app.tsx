@@ -13,7 +13,7 @@ import {
   SEARCH_ROUTE,
   SERVICE_ROUTE,
   SIGNUP,
-  SINGLE_MESSAGE, SINGLE_ORDER
+  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES
 } from "./routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
@@ -28,12 +28,14 @@ import {FunctionComponent, useEffect} from "react";
 import {Redirect} from "react-router";
 import {Dashboard} from "./containers/dashboard/dashboard";
 import {Inbox} from "./containers/dashboard/inbox";
-import {Orders} from "./containers/dashboard/orders";
+import {Orders} from "./containers/dashboard/order/orders";
 import {Earnings} from "./containers/dashboard/earnings";
 import {QueryString} from "./lib/location/query.string";
 import {useLogout} from "./duck/auth/hooks/useLogout";
 import {Order} from "./containers/dashboard/order/order";
 import {OrderPayment} from "./containers/dashboard/order/payment";
+import {Profile} from "./containers/dashboard/profile/profile";
+import {ServicesComponent} from "./containers/dashboard/services/services";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -95,6 +97,8 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
             <Route path={ORDER_PAYMENT} exact render={(routeProps) => <OrderPayment {...routeProps}/>} />
             <Route path={SINGLE_ORDER} exact render={(routeProps) => <Order {...routeProps}/>} />
             <Route path={EARNINGS} exact render={() => <Earnings/>} />
+            <Route path={PROFILE} exact render={() => <Profile />} />
+            <Route path={SERVICES} exact render={() => <ServicesComponent />} />
           </>
         ) : (
           <Redirect to={LOGIN} />
