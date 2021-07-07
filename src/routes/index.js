@@ -21,12 +21,11 @@ export const SINGLE_ORDER = staticRoute('/dashboard/orders/:id');
 export const ORDER_PAYMENT = staticRoute('/dashboard/orders/:id/payment');
 
 export const EARNINGS = staticRoute('/dashboard/earnings');
+export const PAYMENTS = staticRoute('/dashboard/payments');
 
 export const REPORT = staticRoute('/dashboard/report');
 
 export const PROFILE = staticRoute('/dashboard/profile');
-
-export const PAYMENTS = staticRoute('/dashboard/payments');
 
 export const SERVICES = staticRoute('/dashboard/services');
 export const CREATE_SERVICE = staticRoute('/dashboard/services/create');

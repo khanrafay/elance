@@ -8,9 +8,9 @@ export const PaypalPayment: FunctionComponent<{orderId: string}> = (props) => {
     setLoading(true);
     try {
       let response = await jsonRequest(ORDER_PAYMENT_PAYPAL.replace(':id', props.orderId));
-      let json = response.json();
+      let json = await response.json();
   
-      console.log(json);
+      window.location.href = json.link;
     }catch (e) {
     
     }finally {

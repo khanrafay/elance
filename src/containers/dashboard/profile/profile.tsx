@@ -9,6 +9,8 @@ import {jsonRequest, request} from "../../../api/request/request";
 import {PROFILE_UPDATE} from "../../../api/routing/routes/dashboard";
 import {userAuthenticated} from "../../../duck/auth/auth.action";
 import {ConstraintViolation} from "../../../lib/validator/validation.result";
+import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 interface FormValues extends User{
   password?: string;
@@ -18,9 +20,11 @@ interface FormValues extends User{
 export const Profile: FunctionComponent = () => {
   const user = useSelector(getAuthorizedUser);
   
-  const {register, handleSubmit, reset, setError, formState: {errors}} = useForm();
+  const {register, handleSubmit, reset, setError, formState: {errors, isSubmitSuccessful, isDirty}} = useForm();
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  
+  console.log(isSubmitSuccessful);
   
   
   useEffect(() => {
@@ -164,19 +168,24 @@ export const Profile: FunctionComponent = () => {
             <div className="form-group">
               <label htmlFor="file">Profile picture</label>
               <input type="file" {...register('file')} className={`form-control ${errors.file ? 'is-invalid' : ''}`} id="file"/>
+              {errors.file && (
+                <div className="invalid-feedback">
+                  {errors.file.message}
+                </div>
+              )}
             </div>
-            {errors.file && (
-              <div className="invalid-feedback">
-                {errors.file.message}
-              </div>
-            )}
           </div>
           <div className="col-3">
             <Image image={user?.profilePicture} />
           </div>
         </div>
         
-        <button className="btn btn-primary" type="submit" disabled={isLoading}>Save</button>
+        <button className="btn btn-primary" type="submit" disabled={isLoading}>
+          Save {' '}
+          {isSubmitSuccessful && !isDirty && (
+            <FontAwesomeIcon icon={faCheckCircle} />
+          )}
+        </button>
         
       </form>
     </Layout>

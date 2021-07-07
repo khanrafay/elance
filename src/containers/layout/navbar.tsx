@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {getAuthorizedUser} from "../../duck/auth/auth.selector";
 import {useLogout} from "../../duck/auth/hooks/useLogout";
 import {useLocation} from "react-router";
+import {Image} from "../../components/image/image";
 
 
 const Navigation = () => {
@@ -48,7 +49,9 @@ const Navigation = () => {
                 </>
               )}
               
-              <Link className={`nav-item nav-link${location.pathname === PROFILE ? ' active' : ''}`} to={PROFILE}>({getUser.displayName})</Link>
+              <Link className={`nav-item nav-link${location.pathname === PROFILE ? ' active' : ''}`} to={PROFILE}>
+                (<Image h={20} w={20} image={getUser.profilePicture} circle /> {getUser.displayName})
+              </Link>
               <Button color="danger" type="button" onClick={logoutAction} className="ml-3">Logout</Button>
             </>
           )}

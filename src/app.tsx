@@ -13,7 +13,7 @@ import {
   SEARCH_ROUTE,
   SERVICE_ROUTE,
   SIGNUP,
-  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES
+  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES, PAYMENTS
 } from "./routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
@@ -36,6 +36,7 @@ import {Order} from "./containers/dashboard/order/order";
 import {OrderPayment} from "./containers/dashboard/order/payment";
 import {Profile} from "./containers/dashboard/profile/profile";
 import {ServicesComponent} from "./containers/dashboard/services/services";
+import {Payments} from "./containers/dashboard/payments";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -97,6 +98,7 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
             <Route path={ORDER_PAYMENT} exact render={(routeProps) => <OrderPayment {...routeProps}/>} />
             <Route path={SINGLE_ORDER} exact render={(routeProps) => <Order {...routeProps}/>} />
             <Route path={EARNINGS} exact render={() => <Earnings/>} />
+            <Route path={PAYMENTS} exact render={() => <Payments/>} />
             <Route path={PROFILE} exact render={() => <Profile />} />
             <Route path={SERVICES} exact render={() => <ServicesComponent />} />
           </>
