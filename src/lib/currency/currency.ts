@@ -1,0 +1,1 @@
+export const currency = () => process.env.REACT_APP_CURRENCY || '$';

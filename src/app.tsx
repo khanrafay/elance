@@ -13,7 +13,7 @@ import {
   SEARCH_ROUTE,
   SERVICE_ROUTE,
   SIGNUP,
-  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES, PAYMENTS
+  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES, PAYMENTS, CONFIRM_PAYPAL_PAYMENT
 } from "./routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
@@ -37,6 +37,7 @@ import {OrderPayment} from "./containers/dashboard/order/payment";
 import {Profile} from "./containers/dashboard/profile/profile";
 import {ServicesComponent} from "./containers/dashboard/services/services";
 import {Payments} from "./containers/dashboard/payments";
+import {PaypalConfirm} from "./containers/dashboard/order/paypal.confirm";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -97,6 +98,7 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
             <Route path={ORDERS} exact render={(routeProps) => <Orders {...routeProps}/>} />
             <Route path={ORDER_PAYMENT} exact render={(routeProps) => <OrderPayment {...routeProps}/>} />
             <Route path={SINGLE_ORDER} exact render={(routeProps) => <Order {...routeProps}/>} />
+            <Route path={CONFIRM_PAYPAL_PAYMENT} exact render={(routeProps) => <PaypalConfirm {...routeProps}/>}/>
             <Route path={EARNINGS} exact render={() => <Earnings/>} />
             <Route path={PAYMENTS} exact render={() => <Payments/>} />
             <Route path={PROFILE} exact render={() => <Profile />} />

@@ -39,7 +39,7 @@ export const Orders: FunctionComponent<OrdersProps> = (props) => {
   return (
     <Layout>
       <h1>Orders</h1>
-      <table className="table table-hover table-striped">
+      <table className="table table-hover">
         <thead>
         <tr>
           <th>ID</th>
@@ -53,22 +53,30 @@ export const Orders: FunctionComponent<OrdersProps> = (props) => {
         </tr>
         </thead>
         <tbody>
-        {orders.map(order => (
-          <tr onClick={() => history.push(SINGLE_ORDER.replace(':id', order.id))}>
-            <td>{order.orderId}</td>
-            <td>
-              {user?.buyer?.id === order.buyer.id ? 'Me' : order.buyer.displayName}
-              /
-              {user?.seller?.id === order.seller.id ? 'Me' : order.seller.displayName}
-            </td>
-            <td>{order.service!.title}</td>
-            <td title={order.deadline!}>{moment(order.deadline).fromNow()}</td>
-            <td>{order.completeAt}</td>
-            <td>{order.price}</td>
-            <td>{order.description}</td>
-            <td>{order.state}</td>
+        {isLoading ? (
+          <tr>
+            <td colSpan={8} className="p-5 text-center">Loading...</td>
           </tr>
-        ))}
+        ) : (
+          <>
+            {orders.map(order => (
+              <tr onClick={() => history.push(SINGLE_ORDER.replace(':id', order.id))}>
+                <td>{order.orderId}</td>
+                <td>
+                  {user?.buyer?.id === order.buyer.id ? 'Me' : order.buyer.displayName}
+                  /
+                  {user?.seller?.id === order.seller.id ? 'Me' : order.seller.displayName}
+                </td>
+                <td>{order.service!.title}</td>
+                <td title={order.deadline!}>{moment(order.deadline).fromNow()}</td>
+                <td>{order.completeAt}</td>
+                <td>{order.price}</td>
+                <td>{order.description}</td>
+                <td>{order.state}</td>
+              </tr>
+            ))}
+          </>
+        )}
         </tbody>
       </table>
     </Layout>

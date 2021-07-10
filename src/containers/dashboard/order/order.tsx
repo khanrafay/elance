@@ -11,6 +11,7 @@ import {getAuthorizedUser} from "../../../duck/auth/auth.selector";
 import moment from "moment";
 import {useForm} from "react-hook-form";
 import classNames from "classnames";
+import _ from "lodash";
 
 interface OrderProps extends RouteComponentProps<{ id: string }> {
 
@@ -125,18 +126,19 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
           </table>
           
           <div className="text-center mt-5 p-5 rounded border bg-gray-100 shadow-inner">
-            <button className={classNames(['btn btn-danger mr-3', isCancelling ? 'btn-lg' : ''])} onClick={startCancelling}>Cancel Order</button>
             {order.thread && (
-              <Link to={SINGLE_MESSAGE.replace(':id', order?.thread.id)} className="btn btn-primary mr-3">Open Message</Link>
+              <Link to={SINGLE_MESSAGE.replace(':id', order?.thread.id)} className="btn btn-primary mr-3">Open Messages</Link>
             )}
+            <button className={classNames(['btn btn-danger mr-3', isCancelling ? 'btn-lg' : ''])} onClick={startCancelling}>Cancel Order</button>
             <button className={classNames(['btn btn-warning mr-3', isChanging ? 'btn-lg' : ''])} onClick={startChanging}>Change Order</button>
             <button className={classNames(['btn btn-success mr-3', isDelivering ? 'btn-lg' : ''])} onClick={startDelivering}>Deliver Order</button>
             
-            <div className="mt-3">
+            <div className="mt-3 text-left">
               {isCancelling && (
                 <form onSubmit={handleCancelSubmit(cancelOrder)}>
                   <div className="form-group">
-                    <textarea {...cancelRegister('reason')} placeholder="Reason" className="form-control border-danger" />
+                    <label>Reason</label>
+                    <textarea {...cancelRegister('reason')} placeholder="Reason" className="form-control" />
                   </div>
                   <button className="btn btn-danger mr-3" type="submit">Confirm</button>
                   <button className="btn" onClick={() => setCancelling(false)} type="button">Cancel</button>
@@ -146,7 +148,16 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
               {isChanging && (
                 <form onSubmit={handleChangeSubmit(changeOrder)}>
                   <div className="form-group">
-                    <textarea {...changeRegister('reason')} placeholder="Reason" className="form-control border-warning" />
+                    <label>Reason</label>
+                    <textarea {...changeRegister('reason')} placeholder="Reason" className="form-control" />
+                  </div>
+                  <div className="form-group">
+                    <label>Days Extension</label>
+                    <select {...changeRegister('days')} className="form-control">
+                      {_.range(30).map((item, index) => (
+                        <option value={index + 1}>{index + 1}</option>
+                      ))}
+                    </select>
                   </div>
                   <button className="btn btn-warning mr-3" type="submit">Confirm</button>
                   <button className="btn" onClick={() => setChanging(false)} type="button">Cancel</button>
@@ -156,7 +167,8 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
               {isDelivering && (
                 <form onSubmit={handleDeliverSubmit(deliverOrder)}>
                   <div className="form-group">
-                    <textarea {...deliverRegister('reason')} placeholder="Reason" className="form-control border-success" />
+                    <label>Reason</label>
+                    <textarea {...deliverRegister('reason')} placeholder="Reason" className="form-control" />
                   </div>
                   <button className="btn btn-success mr-3" type="submit">Confirm</button>
                   <button className="btn" onClick={() => setDelivering(false)} type="button">Cancel</button>

@@ -33,5 +33,6 @@ export const CREATE_ORDER = scopeUrl('orders/create');
 export const GET_ORDER = scopeUrl('orders/:id');
 export const UPDATE_ORDER = scopeUrl('orders/:id/update');
 export const ORDER_PAYMENT_PAYPAL = scopeUrl('orders/:id/payment/paypal');
+export const CONFIRM_PAYPAL_PAYMENT = scopeUrl('orders/:id/paypal/:token/confirm');
 
 export const MY_SERVICES = scopeUrl('seller/services/list');

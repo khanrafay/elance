@@ -20,6 +20,9 @@ export const PaypalPayment: FunctionComponent<{orderId: string}> = (props) => {
   };
   
   return (
-    <button className="btn btn-primary mt-3" onClick={handlePayment} disabled={isLoading}>Pay with PayPal</button>
+    <>
+      <h3>Pay with <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal" width={100}/></h3>
+      <button className="btn btn-primary mt-3" onClick={handlePayment} disabled={isLoading}>Pay with PayPal</button>
+    </>
   );
 };

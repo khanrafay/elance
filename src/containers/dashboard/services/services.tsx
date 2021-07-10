@@ -22,7 +22,7 @@ export const ServicesComponent: FunctionComponent = () => {
     }catch (e) {
       throw e;
     }finally {
-    
+      setLoading(false);
     }
   };
   
@@ -36,7 +36,7 @@ export const ServicesComponent: FunctionComponent = () => {
       <Link to={CREATE_SERVICE} className="btn btn-primary mb-3">Create Service</Link>
       
       <div className="table-responsive">
-        <table className="table table-bordered table-hover">
+        <table className="table table-hover">
           <thead>
             <th>ID</th>
             <th>Title</th>
@@ -46,19 +46,27 @@ export const ServicesComponent: FunctionComponent = () => {
             <th>Actions</th>
           </thead>
           <tbody>
-          {services.map(service => (
+          {isLoading ? (
             <tr>
-              <td>{service.id}</td>
-              <td>{service.title}</td>
-              <td>{service.description.substr(0, 30)}</td>
-              <td>{service.minPrice} - {service.maxPrice}</td>
-              <td>Status</td>
-              <td>
-                <Link to={'#'} className="btn btn-primary">Edit</Link>
-                <Button type="button" className="btn btn-danger ml-3">Delete</Button>
-              </td>
+              <td colSpan={6} className="p-5 text-center">Loading...</td>
             </tr>
-          ))}
+          ) : (
+            <>
+              {services.map(service => (
+                <tr>
+                  <td>{service.id}</td>
+                  <td>{service.title}</td>
+                  <td>{service.description.substr(0, 30)}</td>
+                  <td>{service.minPrice} - {service.maxPrice}</td>
+                  <td>Status</td>
+                  <td>
+                    <Link to={'#'} className="btn btn-primary">Edit</Link>
+                    <Button type="button" className="btn btn-danger ml-3">Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
           </tbody>
         </table>
       </div>

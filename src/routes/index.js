@@ -19,6 +19,7 @@ export const SINGLE_MESSAGE = staticRoute('/dashboard/messages/:id');
 export const ORDERS = staticRoute('/dashboard/orders');
 export const SINGLE_ORDER = staticRoute('/dashboard/orders/:id');
 export const ORDER_PAYMENT = staticRoute('/dashboard/orders/:id/payment');
+export const CONFIRM_PAYPAL_PAYMENT = staticRoute('/dashboard/orders/:id/paypal/:token/confirm');
 
 export const EARNINGS = staticRoute('/dashboard/earnings');
 export const PAYMENTS = staticRoute('/dashboard/payments');
