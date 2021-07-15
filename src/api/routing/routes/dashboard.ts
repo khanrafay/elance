@@ -31,8 +31,13 @@ export const REJECT_OFFER = scopeUrl('offer/:id/reject');
 export const ORDERS_LIST = scopeUrl('orders/');
 export const CREATE_ORDER = scopeUrl('orders/create');
 export const GET_ORDER = scopeUrl('orders/:id');
-export const UPDATE_ORDER = scopeUrl('orders/:id/update');
-export const ORDER_PAYMENT_PAYPAL = scopeUrl('orders/:id/payment/paypal');
-export const CONFIRM_PAYPAL_PAYMENT = scopeUrl('orders/:id/paypal/:token/confirm');
+export const UPDATE_ORDER_REQUEST = scopeUrl('orders/:id/request/update');
+export const CANCEL_ORDER_REQUEST = scopeUrl('orders/:id/request/cancel');
+export const DELIVER_ORDER_REQUEST = scopeUrl('orders/:id/request/deliver');
+export const CANCEL_ORDER_HISTORY = scopeUrl('orders/:id/history/cancel');
+export const APPROVE_ORDER_HISTORY = scopeUrl('orders/:id/history/approve');
+
+export const ORDER_PAYMENT_PAYPAL = scopeUrl('buyer/orders/:id/payment/paypal');
+export const CONFIRM_PAYPAL_PAYMENT = scopeUrl('buyer/orders/:id/paypal/:token/confirm');
 
 export const MY_SERVICES = scopeUrl('seller/services/list');

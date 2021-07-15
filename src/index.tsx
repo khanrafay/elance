@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './app';
+import App from './app-frontend/app';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "tailwindcss/dist/utilities.min.css";
 import {StoreFactory} from "./store/store.factory";
 import {Provider} from "react-redux";
 require('./typings.d.ts');

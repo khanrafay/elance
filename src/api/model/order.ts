@@ -2,6 +2,7 @@ import {User} from "./user";
 import {Thread} from "./thread";
 import {Offer} from "./offer";
 import {Service} from "./service";
+import {OrderHistory} from "./order.history";
 
 export interface Order{
   id: string;
@@ -18,6 +19,7 @@ export interface Order{
   deadline: string|null;
   price: string;
   description: string;
+  history: OrderHistory[];
 }
 
 export enum OrderStates {
