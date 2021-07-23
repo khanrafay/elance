@@ -15,7 +15,12 @@ export const CATEGORIES_LIST = scopeUrl('categories');
 export const SERVICES_LIST = scopeUrl('services/list');
 export const GET_SERVICE = scopeUrl('services/:id');
 export const FEATURED_SERVICES_LIST = scopeUrl('services/featured-list');
+export const CREATE_SERVICE = scopeUrl('seller/services/create');
+export const DELETE_SERVICE = scopeUrl('seller/services/:id');
+export const UPDATE_SERVICE = scopeUrl('seller/services/:id/edit');
 
+export const MEDIA_UPLOAD = scopeUrl('media/upload');
+export const MEDIA_UPLOAD_MULTIPLE = scopeUrl('media/upload/multiple');
 export const MEDIA_URL = scopeUrl('media/:id');
 export const MEDIA_DOWNLOAD_URL = scopeUrl('media/:id/download');
 

@@ -10,6 +10,7 @@ export interface Service{
     minPrice: number;
     maxPrice: number;
     category: Category;
+    subCategory: Category;
     packages: Package[];
     seller: Seller;
     images: Media[];

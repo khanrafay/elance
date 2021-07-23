@@ -5,4 +5,5 @@ export interface Package{
     itemsIncluded: string[];
     price: number;
     duration: string;
+    durationFormatted: string;
 }

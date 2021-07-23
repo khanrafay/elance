@@ -30,4 +30,4 @@ export const PROFILE = staticRoute('/dashboard/profile');
 
 export const SERVICES = staticRoute('/dashboard/services');
 export const CREATE_SERVICE = staticRoute('/dashboard/services/create');
-export const SINGLE_SERVICE = staticRoute('/dashboard/services/:id');
+export const SINGLE_SERVICE = staticRoute('/dashboard/services/:id/edit');

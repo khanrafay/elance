@@ -1,9 +1,9 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import Layout from "../../layout/layout";
 import {Link} from "react-router-dom";
-import {CREATE_SERVICE} from "../../../routes/frontend.routes";
+import {CREATE_SERVICE, SINGLE_SERVICE} from "../../../routes/frontend.routes";
 import {jsonRequest} from "../../../../api/request/request";
-import {MY_SERVICES} from "../../../../api/routing/routes/dashboard";
+import {DELETE_SERVICE, MY_SERVICES} from "../../../../api/routing/routes/dashboard";
 import {Service} from "../../../../api/model/service";
 import {Button} from "reactstrap/es";
 
@@ -30,6 +30,27 @@ export const ServicesComponent: FunctionComponent = () => {
     loadServices();
   }, []);
   
+  const deleteService = async (id: string) => {
+    if (!window.confirm('Delete this service?')) {
+      return false;
+    }
+    
+    setLoading(true);
+    
+    try {
+      await jsonRequest(DELETE_SERVICE.replace(':id', id), {
+        method: 'DELETE'
+      });
+      
+      await loadServices();
+    } catch (e) {
+      throw e;
+    } finally {
+      setLoading(false);
+    }
+    
+  };
+  
   return (
     <Layout>
       <h1>Services</h1>
@@ -41,7 +62,6 @@ export const ServicesComponent: FunctionComponent = () => {
           <th>Title</th>
           <th>Description</th>
           <th>Price</th>
-          <th>Status</th>
           <th>Actions</th>
           </thead>
           <tbody>
@@ -57,10 +77,9 @@ export const ServicesComponent: FunctionComponent = () => {
                   <td>{service.title}</td>
                   <td>{service.description.substr(0, 30)}</td>
                   <td>{service.minPrice} - {service.maxPrice}</td>
-                  <td>Status</td>
                   <td>
-                    <Link to={'#'} className="btn btn-primary">Edit</Link>
-                    <Button type="button" className="btn btn-danger ml-3">Delete</Button>
+                    <Link to={SINGLE_SERVICE.replace(':id', service.id)} className="btn btn-primary">Edit</Link>
+                    <Button type="button" className="btn btn-danger ml-3" onClick={() => deleteService(service.id)}>Delete</Button>
                   </td>
                 </tr>
               ))}

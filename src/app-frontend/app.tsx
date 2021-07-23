@@ -13,7 +13,7 @@ import {
   SEARCH_ROUTE,
   SERVICE_ROUTE,
   SIGNUP,
-  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES, PAYMENTS, CONFIRM_PAYPAL_PAYMENT
+  SINGLE_MESSAGE, SINGLE_ORDER, PROFILE, SERVICES, PAYMENTS, CONFIRM_PAYPAL_PAYMENT, CREATE_SERVICE, SINGLE_SERVICE
 } from "./routes/frontend.routes";
 import Search from "./containers/search/search";
 import {Service} from "./containers/service/service";
@@ -35,9 +35,11 @@ import {useLogout} from "../duck/auth/hooks/useLogout";
 import {Order} from "./containers/dashboard/order/order";
 import {OrderPayment} from "./containers/dashboard/order/payment";
 import {Profile} from "./containers/dashboard/profile/profile";
-import {ServicesComponent} from "./containers/dashboard/services/services";
+import {ServicesComponent} from "./containers/dashboard/services/list";
 import {Payments} from "./containers/dashboard/payments";
 import {PaypalConfirm} from "./containers/dashboard/order/paypal.confirm";
+import {CreateService} from "./containers/dashboard/services/create";
+import {EditService} from "./containers/dashboard/services/edit";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -105,7 +107,11 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
                 <Route path={EARNINGS} exact render={() => <Earnings/>} />
                 <Route path={PAYMENTS} exact render={() => <Payments/>} />
                 <Route path={PROFILE} exact render={() => <Profile />} />
+                
                 <Route path={SERVICES} exact render={() => <ServicesComponent />} />
+                <Route path={CREATE_SERVICE} exact render={() => <CreateService />} />
+                <Route path={SINGLE_SERVICE} exact render={(props) => <EditService {...props} />} />
+                
               </Switch>
             ) : (
               <Redirect to={LOGIN+'?ref='+match.url} />
