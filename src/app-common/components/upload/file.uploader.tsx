@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useCallback, useEffect, useRef, useState} from "react";
 import {request} from "../../../api/request/request";
-import {MEDIA_UPLOAD_MULTIPLE} from "../../../api/routing/routes/dashboard";
+import {MEDIA_UPLOAD_MULTIPLE} from "../../../api/routing/routes/backend.app";
 import {Media} from "../../../api/model/media";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";

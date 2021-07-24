@@ -1,19 +1,17 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent, useEffect, useState} from "react";
 import Layout from "../../layout/layout";
+import {SINGLE_ORDER} from "../../../../app-frontend/routes/frontend.routes";
+import moment from "moment";
 import {Order as OrderModel} from "../../../../api/model/order";
-import {jsonRequest} from "../../../../api/request/request";
-import {ORDERS_LIST} from "../../../../api/routing/routes/backend.app";
 import {useSelector} from "react-redux";
 import {getAuthorizedUser} from "../../../../duck/auth/auth.selector";
 import {useHistory} from "react-router";
-import {SINGLE_ORDER} from "../../../routes/frontend.routes";
-import moment from "moment";
+import {jsonRequest} from "../../../../api/request/request";
+import {ADMIN_ORDERS_LIST} from "../../../../api/routing/routes/backend.admin";
 
-export interface OrdersProps {
 
-}
-
-export const Orders: FunctionComponent<OrdersProps> = (props) => {
+export const Orders: FunctionComponent = () => {
+  
   const [isLoading, setLoading] = useState(false);
   const [orders, setOrders] = useState<OrderModel[]>([]);
   const user = useSelector(getAuthorizedUser);
@@ -22,7 +20,7 @@ export const Orders: FunctionComponent<OrdersProps> = (props) => {
   const loadOrders = async () => {
     setLoading(true);
     try {
-      let response = await jsonRequest(ORDERS_LIST);
+      let response = await jsonRequest(ADMIN_ORDERS_LIST);
       let json = await response.json();
       setOrders(json.orders);
     } catch (e) {
@@ -35,6 +33,7 @@ export const Orders: FunctionComponent<OrdersProps> = (props) => {
   useEffect(() => {
     loadOrders();
   }, []);
+  
   
   return (
     <Layout>
@@ -60,7 +59,7 @@ export const Orders: FunctionComponent<OrdersProps> = (props) => {
         ) : (
           <>
             {orders.map(order => (
-              <tr onClick={() => history.push(SINGLE_ORDER.replace(':id', order.id))}>
+              <tr onClick={() => history.push(SINGLE_ORDER.replace(':id', order.id))} className="cursor-pointer">
                 <td>{order.orderId}</td>
                 <td>
                   {user?.buyer?.id === order.buyer.id ? 'Me' : order.buyer.displayName}

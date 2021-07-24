@@ -2,7 +2,7 @@ import React, {FunctionComponent, useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router";
 import {Order as OrderModel, OrderStates} from '../../../../api/model/order';
 import {jsonRequest} from "../../../../api/request/request";
-import {GET_ORDER} from "../../../../api/routing/routes/dashboard";
+import {GET_ORDER} from "../../../../api/routing/routes/backend.app";
 import Layout from "../../layout/layout";
 import {Link} from "react-router-dom";
 import {SINGLE_ORDER} from "../../../routes/frontend.routes";

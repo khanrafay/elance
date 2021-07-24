@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useCallback, useEffect, useState} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router";
 import {Order as OrderModel, OrderStates} from '../../../../api/model/order';
 import {jsonRequest} from "../../../../api/request/request";
@@ -9,13 +9,13 @@ import {
   DELIVER_ORDER_REQUEST,
   GET_ORDER,
   UPDATE_ORDER_REQUEST
-} from "../../../../api/routing/routes/dashboard";
+} from "../../../../api/routing/routes/backend.app";
 import Layout from "../../layout/layout";
 import {Link} from "react-router-dom";
 import {ORDER_PAYMENT, SINGLE_MESSAGE} from "../../../routes/frontend.routes";
 import {useSelector} from "react-redux";
 import {getAuthorizedUser} from "../../../../duck/auth/auth.selector";
-import moment, {Moment} from "moment";
+import moment from "moment";
 import {useForm} from "react-hook-form";
 import classNames from "classnames";
 import _ from "lodash";
@@ -74,7 +74,7 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
   };
   
   const cancelOrder = async (values: any) => {
-    if(!order){
+    if (!order) {
       return;
     }
     setLoading(true);
@@ -82,7 +82,7 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
     try {
       let response = await jsonRequest(CANCEL_ORDER_REQUEST.replace(':id', order?.id), {
         method: 'POST',
-        body: JSON.stringify(values)
+        body  : JSON.stringify(values)
       });
       let json = await response.json();
       
@@ -96,18 +96,18 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
   };
   
   const changeOrder = async (values: any) => {
-    if(!order){
+    if (!order) {
       return;
     }
     setLoading(true);
-  
+    
     try {
       let response = await jsonRequest(UPDATE_ORDER_REQUEST.replace(':id', order?.id), {
         method: 'POST',
-        body: JSON.stringify(values)
+        body  : JSON.stringify(values)
       });
       let json = await response.json();
-    
+      
       setOrder(json.order);
     } catch (e) {
       throw e;
@@ -118,18 +118,18 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
   };
   
   const deliverOrder = async (values: any) => {
-    if(!order){
+    if (!order) {
       return;
     }
     setLoading(true);
-  
+    
     try {
       let response = await jsonRequest(DELIVER_ORDER_REQUEST.replace(':id', order?.id), {
         method: 'POST',
-        body: JSON.stringify(values)
+        body  : JSON.stringify(values)
       });
       let json = await response.json();
-    
+      
       setOrder(json.order);
     } catch (e) {
       throw e;
@@ -141,13 +141,13 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
   
   const processOrderHistory = async (history: OrderHistory) => {
     setLoading(true);
-  
+    
     try {
       let response = await jsonRequest(APPROVE_ORDER_HISTORY.replace(':id', history.id), {
         method: 'POST'
       });
       let json = await response.json();
-    
+      
       setOrder(json.order);
     } catch (e) {
       throw e;
@@ -159,13 +159,13 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
   
   const cancelOrderHistory = async (history: OrderHistory) => {
     setLoading(true);
-  
+    
     try {
       let response = await jsonRequest(CANCEL_ORDER_HISTORY.replace(':id', history.id), {
         method: 'POST'
       });
       let json = await response.json();
-    
+      
       setOrder(json.order);
     } catch (e) {
       throw e;
@@ -222,35 +222,34 @@ export const Order: FunctionComponent<OrderProps> = (props) => {
               <td>{order.description}</td>
             </tr>
           </table>
-          
           <h3>Updates</h3>
           <table className="table table-bordered table-hover">
             <thead>
-              <tr>
-                <th>Event</th>
-                <th>Description</th>
-                <th>Created At</th>
-                <th>Is approved</th>
-                <th>Actions</th>
-              </tr>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Created At</th>
+              <th>Is approved</th>
+              <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-              {order.history.map(history => (
-                <tr>
-                  <th>{history.event}</th>
-                  <td>{history.description}</td>
-                  <td>{moment(history.createdAt).format('lll')}</td>
-                  <td>{history.approved ? 'Yes' : 'No'}</td>
-                  <td>
-                    {history.createdBy.id !== user?.id && !history.approved && (
-                      <button className="btn btn-primary mr-3" type="button" onClick={() => processOrderHistory(history)}>Approve</button>
-                    )}
-                    {!history.approved && (
-                      <button className="btn btn-danger mr-3" type="button" onClick={() => cancelOrderHistory(history)}>Cancel</button>
-                    )}
-                  </td>
-                </tr>
-              ))}
+            {order.history.map(history => (
+              <tr>
+                <th>{history.event}</th>
+                <td>{history.description}</td>
+                <td>{moment(history.createdAt).format('lll')}</td>
+                <td>{history.approved ? 'Yes' : 'No'}</td>
+                <td>
+                  {history.createdBy.id !== user?.id && !history.approved && (
+                    <button className="btn btn-primary mr-3" type="button" onClick={() => processOrderHistory(history)}>Approve</button>
+                  )}
+                  {!history.approved && (
+                    <button className="btn btn-danger mr-3" type="button" onClick={() => cancelOrderHistory(history)}>Cancel</button>
+                  )}
+                </td>
+              </tr>
+            ))}
             </tbody>
           </table>
           <div className="text-center mt-5 p-5 rounded border bg-gray-100 shadow-inner">

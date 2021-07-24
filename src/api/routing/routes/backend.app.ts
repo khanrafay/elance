@@ -9,7 +9,7 @@ export const REGISTER = scopeUrl('auth/register');
 
 export const PROFILE_UPDATE = scopeUrl('profile/update');
 
-export const DASHBOARD = scopeUrl('dashboard');
+export const BackendApp = scopeUrl('dashboard');
 
 export const CATEGORIES_LIST = scopeUrl('categories');
 export const SERVICES_LIST = scopeUrl('services/list');

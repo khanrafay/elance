@@ -1,12 +1,12 @@
-import React, {FunctionComponent, useCallback, useEffect, useState} from "react";
-import {FileUploader} from "../../../components/upload/file.uploader";
+import React, {FunctionComponent, useEffect, useState} from "react";
+import {FileUploader} from "../../../../app-common/components/upload/file.uploader";
 import {Media} from "../../../../api/model/media";
 import {getErrorClass, getErrors} from "../../../../lib/error/error";
 import {Category} from "../../../../api/model/category";
 import {jsonRequest} from "../../../../api/request/request";
-import {CATEGORIES_LIST} from "../../../../api/routing/routes/dashboard";
+import {CATEGORIES_LIST} from "../../../../api/routing/routes/backend.app";
 import {QueryString} from "../../../../lib/location/query.string";
-import {useFieldArray, UseFormReturn} from "react-hook-form";
+import {UseFormReturn} from "react-hook-form";
 import {Package} from "./package";
 
 interface ServiceFormProps {
@@ -75,7 +75,7 @@ export const ServiceForm: FunctionComponent<ServiceFormProps> = ({
   };
   
   useEffect(() => {
-    if(initialValues && initialValues.files) {
+    if (initialValues && initialValues.files) {
       setFiles(initialValues.files);
     }
   }, [initialValues]);

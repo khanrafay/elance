@@ -6,7 +6,7 @@ import {getAuthorizedUser} from "../../../../duck/auth/auth.selector";
 import {User} from "../../../../api/model/user";
 import {Image} from "../../../../app-common/components/image/image";
 import {request} from "../../../../api/request/request";
-import {PROFILE_UPDATE} from "../../../../api/routing/routes/backend.app";
+import {ADMIN_PROFILE_UPDATE} from "../../../../api/routing/routes/backend.admin";
 import {userAuthenticated} from "../../../../duck/auth/auth.action";
 import {ConstraintViolation} from "../../../../lib/validator/validation.result";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
@@ -24,17 +24,10 @@ export const Profile: FunctionComponent = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   
-  console.log(isSubmitSuccessful);
-  
-  
   useEffect(() => {
     reset({
       firstName: user?.firstName,
       lastName: user?.lastName,
-      currentType: user?.currentType,
-      gender: user?.gender,
-      dateOfBirth: user?.dateOfBirth,
-      onlineStatus: user?.onlineStatus
     });
   }, [user]);
   
@@ -44,16 +37,6 @@ export const Profile: FunctionComponent = () => {
       let data = new FormData();
       data.append('firstName', values.firstName);
       data.append('lastName', values.lastName);
-      data.append('currentType', values.currentType);
-      if (values.gender) {
-        data.append('gender', values.gender);
-      }
-      data.append('dateOfBirth', values.dateOfBirth);
-      if (values.onlineStatus) {
-        data.append('onlineStatus', 'true');
-      } else {
-        data.append('onlineStatus', 'false');
-      }
       if (values.password) {
         data.append('password', values.password);
       }
@@ -61,7 +44,7 @@ export const Profile: FunctionComponent = () => {
       if (values.file) {
         data.append('file', values.file[0]);
       }
-      let response = await request(PROFILE_UPDATE, {
+      let response = await request(ADMIN_PROFILE_UPDATE, {
         method: 'POST',
         body: data
       });
@@ -120,48 +103,6 @@ export const Profile: FunctionComponent = () => {
                   {errors.password.message}
                 </div>
               )}
-            </div>
-            <p>Default type</p>
-            <div className="form-check form-check-inline">
-              <label htmlFor="seller">
-                <input type="radio" {...register('currentType')} value="seller" id="seller" /> Seller
-              </label>
-            </div>
-            <div className="form-check form-check-inline">
-              <label htmlFor="buyer">
-                <input type="radio" {...register('currentType')} value="buyer" id="buyer" /> Buyer
-              </label>
-            </div>
-            {errors.currentType && (
-              <div className="invalid-feedback">
-                {errors.currentType.message}
-              </div>
-            )}
-            <div className="form-group">
-              <label htmlFor="gender">Gender</label>
-              <select {...register('gender')} className={`form-control ${errors.gender ? 'is-invalid' : ''}`} id={"gender"}>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              {errors.gender && (
-                <div className="invalid-feedback">
-                  {errors.gender.message}
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="dob">Date of birth</label>
-              <input type="date" {...register('dateOfBirth')} className={`form-control ${errors.dateOfBirth ? 'is-invalid' : ''}`} id={"dob"} />
-              {errors.dateOfBirth && (
-                <div className="invalid-feedback">
-                  {errors.dateOfBirth.message}
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="status">
-                <input type="checkbox" {...register('onlineStatus')} id="status" /> Online status
-              </label>
             </div>
             <div className="form-group">
               <label htmlFor="file">Profile picture</label>

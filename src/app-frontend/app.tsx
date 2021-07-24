@@ -124,7 +124,7 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
   );
 };
 
-const App = connect(
+export const App = connect(
   (state: RootState) => ({
     isLoggedIn: isUserLoggedIn(state),
     hasBootstrapped: hasBootstrapped(state),
@@ -139,5 +139,3 @@ const App = connect(
       dispatch
     )
 )(AppComponent);
-
-export default App;

@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useEffect, useMemo, useState} from "react";
 import Layout from "../layout/layout";
 import {jsonRequest} from "../../../api/request/request";
-import {SERVICES_LIST} from "../../../api/routing/routes/dashboard";
+import {SERVICES_LIST} from "../../../api/routing/routes/backend.app";
 import {Col, Row} from "reactstrap";
 import Categories from "../categories/categories";
 import Service from "../../components/service/service";

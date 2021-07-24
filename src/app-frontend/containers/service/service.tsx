@@ -3,7 +3,7 @@ import {RouteComponentProps, useHistory} from "react-router";
 import Layout from "../layout/layout";
 import {Service as ServiceModel} from "../../../api/model/service";
 import {jsonRequest} from "../../../api/request/request";
-import {CREATE_THREAD, GET_SERVICE} from "../../../api/routing/routes/dashboard";
+import {CREATE_THREAD, GET_SERVICE} from "../../../api/routing/routes/backend.app";
 import {
   Button,
   Col,
@@ -20,7 +20,7 @@ import {
   TabContent,
   TabPane
 } from "reactstrap/es";
-import {Image} from "../../components/image/image";
+import {Image} from "../../../app-common/components/image/image";
 import classnames from 'classnames';
 import {Package} from "../../../api/model/package";
 import {Seller} from "../../../api/model/seller";

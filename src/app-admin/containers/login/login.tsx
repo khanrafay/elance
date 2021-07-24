@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Button, Card, CardBody, CardTitle, Form, FormGroup, Input} from 'reactstrap';
 import Layout from "../layout/layout";
-import {LOGIN} from "../../../api/routing/routes/backend.app";
+import {LOGIN} from "../../../api/routing/routes/backend.admin";
 import {jsonRequest} from "../../../api/request/request";
 import {useDispatch} from "react-redux";
 import {userAuthenticated} from "../../../duck/auth/auth.action";
@@ -22,7 +22,7 @@ const Login = () => {
     setErrorMessage(undefined);
     const requestOptions = {
       method: 'POST',
-      body: JSON.stringify({username: values.username, password: values.password, role: 'ROLE_USER'})
+      body: JSON.stringify({username: values.username, password: values.password, role: 'ROLE_ADMIN'})
     };
     
     jsonRequest(LOGIN, requestOptions)

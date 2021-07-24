@@ -3,7 +3,7 @@ import { logoutError, userAuthenticated, userAuthenticationFailed, userLoggedOut
 import { AuthInfoResponse, getAuthInfo, UserNotAuthorizedException } from '../../api/api/account/info';
 import { User } from "../../api/model/user";
 import {jsonRequest} from "../../api/request/request";
-import {LOGOUT} from "../../api/routing/routes/dashboard";
+import {LOGOUT} from "../../api/routing/routes/backend.app";
 
 export async function authLogout(): Promise<void> {
   await jsonRequest(LOGOUT, { method: 'post' });

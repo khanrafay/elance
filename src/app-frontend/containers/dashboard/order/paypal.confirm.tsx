@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import {request} from "../../../../api/request/request";
-import {CONFIRM_PAYPAL_PAYMENT} from "../../../../api/routing/routes/dashboard";
+import {CONFIRM_PAYPAL_PAYMENT} from "../../../../api/routing/routes/backend.app";
 import Layout from "../../layout/layout";
 import {RouteComponentProps, useHistory, useLocation} from "react-router";
 import {QueryString} from "../../../../lib/location/query.string";

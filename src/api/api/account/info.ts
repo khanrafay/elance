@@ -1,6 +1,6 @@
 import { jsonRequest } from '../../request/request';
 import {User} from "../../model/user";
-import { AUTH_INFO } from '../../routing/routes/dashboard';
+import { AUTH_INFO } from '../../routing/routes/backend.app';
 import { HttpException, UnauthorizedException } from '../../exception';
 
 export interface AuthInfoResponse{

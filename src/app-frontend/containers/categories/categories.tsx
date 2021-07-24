@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ListGroup} from 'reactstrap';
 import {jsonRequest} from "../../../api/request/request";
-import {CATEGORIES_LIST} from "../../../api/routing/routes/dashboard";
+import {CATEGORIES_LIST} from "../../../api/routing/routes/backend.app";
 import {SEARCH_ROUTE} from "../../routes/frontend.routes";
 import {Link} from "react-router-dom";
 import {Category} from "../../../api/model/category";

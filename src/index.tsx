@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './app-frontend/app';
+import {App as Frontend} from './app-frontend/app';
+import {App as Admin} from './app-admin/app';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "tailwindcss/dist/utilities.min.css";
@@ -13,7 +14,7 @@ const store = StoreFactory.createStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+      {process.env.REACT_APP_TYPE === 'frontend' ? <Frontend/> : <Admin />}
     </Provider>,
   document.getElementById('root')
 );

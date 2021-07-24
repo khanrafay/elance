@@ -1,7 +1,7 @@
 import React, {FunctionComponent, HTMLAttributes} from "react";
 import {Service as ServiceModel} from "../../../api/model/service";
 import ServiceImage from "../../../Images/download.png";
-import {Image} from "../image/image";
+import {Image} from "../../../app-common/components/image/image";
 import classNames from "classnames";
 
 

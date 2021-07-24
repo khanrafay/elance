@@ -3,7 +3,7 @@ import Layout from "../../layout/layout";
 import {Link} from "react-router-dom";
 import {CREATE_SERVICE, SINGLE_SERVICE} from "../../../routes/frontend.routes";
 import {jsonRequest} from "../../../../api/request/request";
-import {DELETE_SERVICE, MY_SERVICES} from "../../../../api/routing/routes/dashboard";
+import {DELETE_SERVICE, MY_SERVICES} from "../../../../api/routing/routes/backend.app";
 import {Service} from "../../../../api/model/service";
 import {Button} from "reactstrap/es";
 

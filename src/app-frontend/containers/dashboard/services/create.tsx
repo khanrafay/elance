@@ -3,7 +3,7 @@ import Layout from "../../layout/layout";
 import {useForm} from "react-hook-form";
 import {ServiceForm} from "./form";
 import {jsonRequest} from "../../../../api/request/request";
-import {CREATE_SERVICE} from "../../../../api/routing/routes/dashboard";
+import {CREATE_SERVICE} from "../../../../api/routing/routes/backend.app";
 import {useHistory} from "react-router";
 import {SERVICES} from "../../../routes/frontend.routes";
 import {ConstraintViolation} from "../../../../lib/validator/validation.result";

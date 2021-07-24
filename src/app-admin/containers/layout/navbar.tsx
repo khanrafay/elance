@@ -2,15 +2,10 @@ import React, {useState} from 'react';
 import {Button, Collapse, Navbar, NavbarToggler} from 'reactstrap';
 import {Link} from "react-router-dom";
 import {
-  DASHBOARD,
-  EARNINGS,
-  INBOX,
-  LOGIN,
+  DASHBOARD, FEATURED,
+  HOMEPAGE,
   ORDERS,
-  PAYMENTS,
-  PROFILE,
-  SERVICES,
-  SIGNUP
+  PROFILE, USERS
 } from "../../routes/frontend.routes";
 import {useSelector} from "react-redux";
 import {getAuthorizedUser} from "../../../duck/auth/auth.selector";
@@ -40,24 +35,14 @@ const Navigation = () => {
         <Collapse isOpen={isOpen} navbar className="justify-content-end navbar-nav">
           {getUser === null ? (
             <>
-              <Link className={`nav-item nav-link${location.pathname === LOGIN ? ' active' : ''}`} to={LOGIN}>Login</Link>
-              <Link className={`nav-item nav-link`} to={SIGNUP}>Signup</Link>
+              <Link className={`nav-item nav-link${location.pathname === HOMEPAGE ? ' active' : ''}`} to={HOMEPAGE}>Login</Link>
             </>
           ) : (
             <>
               <Link className={`nav-item nav-link${location.pathname === DASHBOARD ? ' active' : ''}`} to={DASHBOARD}>Dashboard</Link>
-              <Link className={`nav-item nav-link${location.pathname === INBOX ? ' active' : ''}`} to={INBOX}>Inbox</Link>
+              <Link className={`nav-item nav-link${location.pathname === FEATURED ? ' active' : ''}`} to={FEATURED}>Featured</Link>
+              <Link className={`nav-item nav-link${location.pathname === USERS ? ' active' : ''}`} to={USERS}>Users</Link>
               <Link className={`nav-item nav-link${location.pathname === ORDERS ? ' active' : ''}`} to={ORDERS}>Orders</Link>
-              {getUser.currentType === 'buyer' ? (
-                <>
-                  <Link className={`nav-item nav-link${location.pathname === PAYMENTS ? ' active' : ''}`} to={PAYMENTS}>Payments</Link>
-                </>
-              ) : (
-                <>
-                  <Link className={`nav-item nav-link${location.pathname === SERVICES ? ' active' : ''}`} to={SERVICES}>Services</Link>
-                  <Link className={`nav-item nav-link${location.pathname === EARNINGS ? ' active' : ''}`} to={EARNINGS}>Earnings</Link>
-                </>
-              )}
               <Link className={`nav-item nav-link${location.pathname === PROFILE ? ' active' : ''}`} to={PROFILE}>
                 (<Image h={20} w={20} image={getUser.profilePicture} circle /> {getUser.displayName})
               </Link>

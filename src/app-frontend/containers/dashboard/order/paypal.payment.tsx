@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import {jsonRequest} from "../../../../api/request/request";
-import {ORDER_PAYMENT_PAYPAL} from "../../../../api/routing/routes/dashboard";
+import {ORDER_PAYMENT_PAYPAL} from "../../../../api/routing/routes/backend.app";
 
 export const PaypalPayment: FunctionComponent<{orderId: string}> = (props) => {
   const [isLoading, setLoading] = useState(false);

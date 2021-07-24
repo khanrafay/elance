@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState} from "react";
 import {Offer as OfferModel} from "../../../api/model/offer";
 import {jsonRequest} from "../../../api/request/request";
-import {ACCEPT_OFFER, REJECT_OFFER} from "../../../api/routing/routes/dashboard";
+import {ACCEPT_OFFER, REJECT_OFFER} from "../../../api/routing/routes/backend.app";
 import {UnauthorizedException, UnprocessableEntityException} from "../../../lib/http/exception/http.exception";
 import {ValidationExceptionFactory} from "../../../api/exception/validation/validation.exception.factory";
 import {Link} from "react-router-dom";

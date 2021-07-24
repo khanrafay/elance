@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Media} from "../../../api/model/media";
-import {MEDIA_URL} from "../../../api/routing/routes/dashboard";
+import {MEDIA_URL} from "../../../api/routing/routes/backend.app";
 import {QueryString} from "../../../lib/location/query.string";
 
 export interface ImageProps {

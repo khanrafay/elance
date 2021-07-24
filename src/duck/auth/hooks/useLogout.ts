@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { userLoggedOut } from '../auth.action';
 import { useDispatch } from 'react-redux';
 import {jsonRequest} from "../../../api/request/request";
-import {LOGOUT} from "../../../api/routing/routes/dashboard";
+import {LOGOUT} from "../../../api/routing/routes/backend.app";
 
 export interface LogoutState {
   isLoading: boolean;

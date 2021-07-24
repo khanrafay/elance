@@ -8,12 +8,12 @@ import {
   SEND_MESSAGE,
   THREAD_MESSAGES,
   THREADS_LIST
-} from "../../../api/routing/routes/dashboard";
+} from "../../../api/routing/routes/backend.app";
 import {Thread} from "../../../api/model/thread";
 import {Message} from "../../../api/model/message";
 import {Link} from "react-router-dom";
 import {SINGLE_MESSAGE, SINGLE_ORDER} from "../../routes/frontend.routes";
-import {Image} from "../../components/image/image";
+import {Image} from "../../../app-common/components/image/image";
 import {useForm} from "react-hook-form";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperclip, faPaperPlane, faPencilAlt} from "@fortawesome/free-solid-svg-icons";

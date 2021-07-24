@@ -5,7 +5,7 @@ import {Col, Row} from 'reactstrap';
 import Service from '../../components/service/service';
 import {Service as ServiceModel} from "../../../api/model/service";
 import {jsonRequest} from "../../../api/request/request";
-import {FEATURED_SERVICES_LIST} from "../../../api/routing/routes/dashboard";
+import {FEATURED_SERVICES_LIST} from "../../../api/routing/routes/backend.app";
 import {Search as SearchBar} from '../../components/search/search';
 import {Link} from "react-router-dom";
 import {SERVICE_ROUTE} from "../../routes/frontend.routes";
