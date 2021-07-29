@@ -1,7 +1,16 @@
 import './app.css';
 import Login from './containers/login/login';
 import {BrowserRouter as Router, Route, Switch,} from "react-router-dom";
-import {DASHBOARD, FEATURED, HOMEPAGE, ORDERS, PROFILE, USERS} from "./routes/frontend.routes";
+import {
+  CATEGORIES,
+  CREATE_CATEGORY,
+  DASHBOARD,
+  FEATURED,
+  HOMEPAGE,
+  ORDERS,
+  PROFILE, SINGLE_CATEGORY,
+  USERS
+} from "./routes/frontend.routes";
 import {connect} from "react-redux";
 import {RootState} from "../duck/_root/root.state";
 import {isUserLoggedIn} from "../duck/auth/auth.selector";
@@ -18,6 +27,10 @@ import {Orders} from "./containers/dashboard/orders/list";
 import {Profile} from "./containers/dashboard/profile/profile";
 import {Users} from "./containers/dashboard/users/list";
 import {FeaturedItems} from "./containers/dashboard/featured/list";
+import {Categories} from "./containers/dashboard/categories/list";
+import {CreateCategory} from "./containers/dashboard/categories/create";
+import {EDIT_CATEGORY} from "../api/routing/routes/backend.admin";
+import {EditCategory} from "./containers/dashboard/categories/edit";
 
 export interface AppProps {
   bootstrap: () => void;
@@ -77,6 +90,10 @@ const AppComponent: FunctionComponent<AppProps> = (props) => {
                 <Route path={ORDERS} exact render={() => <Orders/>} />
   
                 <Route path={USERS} exact render={() => <Users/>} />
+                
+                <Route path={CATEGORIES} exact render={() => <Categories/>} />
+                <Route path={CREATE_CATEGORY} exact render={() => <CreateCategory/>} />
+                <Route path={SINGLE_CATEGORY} exact render={(props) => <EditCategory {...props} />} />
   
                 <Route path={FEATURED} exact render={() => <FeaturedItems/>} />
   

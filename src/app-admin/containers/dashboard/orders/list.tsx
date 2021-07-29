@@ -37,7 +37,7 @@ export const Orders: FunctionComponent = () => {
   
   return (
     <Layout>
-      <h1>Orders</h1>
+      <h3>Orders</h3>
       <table className="table table-hover">
         <thead>
         <tr>

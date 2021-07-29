@@ -8,7 +8,7 @@ export interface PaymentsProps {
 export const Payments: FunctionComponent<PaymentsProps> = (props) => {
   return (
     <Layout>
-      <h1>Payments</h1>
+      <h3>Payments</h3>
     </Layout>
   );
 };

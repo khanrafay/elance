@@ -15,3 +15,9 @@ export const BackendApp = scopeUrl('dashboard');
 export const ADMIN_ORDERS_LIST = adminScopedUrl('orders/');
 
 export const ADMIN_USERS_LIST = adminScopedUrl('users/');
+
+export const CATEGORIES_LIST = adminScopedUrl('categories/list');
+export const CREATE_CATEGORY = adminScopedUrl('categories/create');
+export const DELETE_CATEGORY = adminScopedUrl('categories/:id');
+export const GET_CATEGORY = adminScopedUrl('categories/:id');
+export const EDIT_CATEGORY = adminScopedUrl('categories/:id/edit');

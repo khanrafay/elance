@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button, Collapse, Navbar, NavbarToggler} from 'reactstrap';
 import {Link} from "react-router-dom";
 import {
+  CATEGORIES,
   DASHBOARD, FEATURED,
   HOMEPAGE,
   ORDERS,
@@ -40,6 +41,7 @@ const Navigation = () => {
           ) : (
             <>
               <Link className={`nav-item nav-link${location.pathname === DASHBOARD ? ' active' : ''}`} to={DASHBOARD}>Dashboard</Link>
+              <Link className={`nav-item nav-link${location.pathname === CATEGORIES ? ' active' : ''}`} to={CATEGORIES}>Categories</Link>
               <Link className={`nav-item nav-link${location.pathname === FEATURED ? ' active' : ''}`} to={FEATURED}>Featured</Link>
               <Link className={`nav-item nav-link${location.pathname === USERS ? ' active' : ''}`} to={USERS}>Users</Link>
               <Link className={`nav-item nav-link${location.pathname === ORDERS ? ' active' : ''}`} to={ORDERS}>Orders</Link>

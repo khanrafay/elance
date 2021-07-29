@@ -8,7 +8,7 @@ export interface EarningsProps {
 export const Earnings: FunctionComponent<EarningsProps> = (props) => {
 	return (
 		<Layout>
-			<h1>Earnings</h1>
+			<h3>Earnings</h3>
 		</Layout>
 	);
 };

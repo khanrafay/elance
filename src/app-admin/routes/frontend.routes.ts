@@ -15,7 +15,11 @@ export const ORDERS = staticRoute('/dashboard/orders');
 export const SINGLE_ORDER = staticRoute('/dashboard/orders/:id');
 
 export const USERS = staticRoute('/dashboard/users');
-export const SINGLE_USER = staticRoute('/dashboard/users/:id');
+export const SINGLE_USER = staticRoute('/dashboard/users/:id/edit');
+
+export const CATEGORIES = staticRoute('/dashboard/categories');
+export const SINGLE_CATEGORY = staticRoute('/dashboard/categories/:id/edit');
+export const CREATE_CATEGORY = staticRoute('/dashboard/categories/create');
 
 export const FEATURED = staticRoute('/dashboard/featured');
 

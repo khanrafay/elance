@@ -35,7 +35,7 @@ export const Users: FunctionComponent = () => {
   
   return (
     <Layout>
-      <h1>Users</h1>
+      <h3>Users</h3>
       <table className="table table-hover">
         <thead>
         <tr>

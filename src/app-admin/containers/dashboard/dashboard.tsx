@@ -8,7 +8,7 @@ export interface DashboardProps {
 export const Dashboard: FunctionComponent<DashboardProps> = (props) => {
 	return (
 		<Layout>
-			<h1>Dashboard</h1>
+			<h3>Dashboard</h3>
 		</Layout>
 	);
 };
