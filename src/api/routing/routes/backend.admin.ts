@@ -21,3 +21,9 @@ export const CREATE_CATEGORY = adminScopedUrl('categories/create');
 export const DELETE_CATEGORY = adminScopedUrl('categories/:id');
 export const GET_CATEGORY = adminScopedUrl('categories/:id');
 export const EDIT_CATEGORY = adminScopedUrl('categories/:id/edit');
+
+export const ADMIN_FEATURED_SELLERS_LIST = adminScopedUrl('featured/sellers');
+export const ADMIN_FEATURED_SELLERS_UPDATE = adminScopedUrl('featured/sellers/update');
+export const ADMIN_BANNERS_LIST = adminScopedUrl('featured/banners');
+export const ADMIN_BANNERS_DELETE = adminScopedUrl('featured/banners/:id');
+export const ADMIN_BANNERS_UPLOAD = adminScopedUrl('featured/banners/upload');

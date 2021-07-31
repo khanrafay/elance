@@ -56,6 +56,9 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = (props) => {
   }, [props.onUpload]);
   
   const deleteFile = async (index: number) => {
+    if(!window.confirm('Delete file?')){
+      return false;
+    }
     setLoading(true);
     
     let files = [...uploadedFile];
@@ -99,7 +102,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = (props) => {
       </div>
       <div className="row">
         {uploadedFile && uploadedFile.map((file, index) => (
-          <div className="col-3" key={index}>
+          <div className="col-3 mb-3" key={index}>
             <div className="d-inline-block position-relative">
               <Image image={file} w={200} />
               <button type="button" className="btn btn-danger position-absolute top-0 right-0" onClick={() => deleteFile(index)}>

@@ -7,4 +7,6 @@ export interface Seller{
     profilePicture: Media;
     name: string;
     services: Service[];
+    isFeatured?: boolean;
+    featuredTill?: string;
 }

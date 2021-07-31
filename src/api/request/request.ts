@@ -1,7 +1,7 @@
 import { request as httpRequest } from '../../lib/http/request';
 import { fetchConfig } from '../config/fetch.config';
 import { composeHeaders } from '../../lib/http/header/compose';
-import { jsonAcceptHeader, jsonContentTypeHeader } from './header';
+import {formContentTypeHeader, jsonAcceptHeader, jsonContentTypeHeader} from './header';
 
 /**
  * @see httpRequest
@@ -34,5 +34,20 @@ export const jsonRequest = async (input: RequestInfo, init: RequestInit = {}) =>
     headers
   };
 
+  return request(input, init);
+};
+
+export const formRequest = async (input: RequestInfo, init: RequestInit = {}) => {
+  const initHeaders = init.headers || {};
+  
+  const headers = composeHeaders(
+    initHeaders, formContentTypeHeader(), jsonAcceptHeader()
+  );
+  
+  init = {
+    ...init,
+    headers
+  };
+  
   return request(input, init);
 };
